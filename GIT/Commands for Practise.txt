@@ -1,0 +1,113 @@
+#GIT Commands 
+#In Practice:
+# Running git config globally
+$ git config --global user.email "xxxxxxx@gmail.com"
+$ git config --global user.name "Loksai"
+# Running git config on the current repository settings
+$ git config user.email "xxxxxxx@gmail.com"
+$ git config user.name "Loksai“
+$ git config --global –edit
+
+
+#stash Command:
+
+Stash current work:
+$ git stash
+
+Saving stashes with a message: 
+$ git stash save "<Stashing Message>"
+
+Check the stored stashes: 
+$ git stash list
+
+Re-apply the changes that you just stashed 
+$ git stash apply
+
+Track the stashes and their changes: 
+$ git stash show
+
+Re-apply the previous commits: 
+$ git stash pop
+
+Delete a most recent stash from the queue: 
+$ git stash drop
+
+Delete all the available stashes at once: 
+$ git stash clear
+
+Stash work on a separate branch: 
+$ git stash branch <branch name>
+
+
+scenario 1: Create Empty Local repository & add some files, modify files then add to git staging area & commit all changes together
+
+	mkdir ProjectA ; cd ProjectA
+	git init ( will initialize the empty project if the directory is empty )
+	touch abc.java new.java sample.java ( creates empty files if not exists )
+	vi sample.java (opens the file in editor - enter some text & save it )
+	git status -- to check changes made
+	git add abc.java new.java sample.java ( adds the files to git staging area so that git can track the changes )
+	git commit -m "any message" ( saves the files to git repository permanently  & genereates a commit id )
+
+===================================================================================================================	
+scenario 2: in a git local repository add more files, edit some files, remove somefiles & add to staging area then commit the changes for every change accordingly 
+
+	cd ProjectA ( switch into the project direcotry in which git init command was ran )
+	touch heloworld.java readme.txt ( creates new empty files )
+	git status -- to check changes made
+	git add . ( we can give the individual file names OR just give dot (.) to stage all the changes in the project )
+	git commit -m "added files"
+	vi heloworld.java ( opens the file in editor - enter some text & save it )
+	git status -- to check changes made
+	git add .
+	git commit -m "modified heloworld.java"
+	rm abc.java ( removes the files from project ProjectA direcotry )
+	git status -- to check changes made
+	git add .
+	git commit -m "deleted abc.java"
+
+	Note: like above you can add & commit each change you do OR you do all changes in a repository then at the end you can add & commit them all together also, its completely how you want to do it.
+
+===================================================================================================================
+scenario 3: check all the commits made so far & who commited at what time etc...
+	
+	cd ProjectA
+	git log ( will show all the commits made to project so far )
+
+===================================================================================================================	
+scenario 5: ignoring some files in a git repository permanently ( .gitignore )
+
+	cd ProjectA
+	touch .gitignore ( creates a .gitignore file ) 
+	vi .gitignore ( opens the file for editing enter below )
+		logs/   ( completely ignore the direcotry & content inside )
+		*.class ( completely ignores files ending with .class in the reposiotry )
+		*.txt   ( comletely ignores files ending with .txt in the reposiotry )
+		save & close the file 
+	git add .
+	git commit -m "new .gitignore"
+	git status -- to see any chagnes - make sure it shows "working tree is clean" then 
+	
+	touch abc.class new.txt pgm1.class
+	mkdir logs/
+	cd logs
+	touch devops.java git.java helo.txt
+    cd ..
+    git status -- should still show you working tree is clean as we added all the above pattern in .gitignore file
+
+		Note: .gitignore is a hidden file in linux ( means a dot (.) infront of any file name becomes hidden file in linux ) 
+
+===================================================================================================================
+
+scenario 6: work with git tags
+
+	Tagging is used to capture a point in history that is used for a marked version release (i.e. v1.0.1), in other words git tags are simply aliases for commit ids. tags are always created against specific commit ids
+	
+	git tag -- lists all available tags
+	git show v1.2 -- shows which commit id tagged, who commited & what is commited
+	
+	git tag --a v1.2 -m "any message" --- by default git tags the recent commit id / last commit id -- in other terms the HEAD
+		
+	git tag --a v1.3 <commit id> -m "any message" -- tags a specific commit id provided
+
+===================================================================================================================
