@@ -1,0 +1,22 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+    post 
+    {
+        always
+        {
+            mail bcc: '', body: 'Jenkins Msg', cc: '', from: '', replyTo: '', subject: 'Jenkins', to: 'XXXXXX@gmail.com'
+        }
+        
+    }
+}
+
+
