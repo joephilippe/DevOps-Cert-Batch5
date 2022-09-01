@@ -1,0 +1,32 @@
+*******************************************************************
+# 1. Pod Definition
+
+# nginx-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+    tier: dev
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+
+    ports:
+    - containerPort: 80
+
+*******************************************************************
+
+2. Create and display Pods
+
+# Create and display PODs
+kubectl create -f nginx-pod.yaml
+kubectl get pod
+kubectl get pod -o wide
+kubectl get pod nginx-pod -o yaml
+kubectl describe pod nginx-pod
+
+
+*******************************************************************
