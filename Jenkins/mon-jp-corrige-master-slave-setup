@@ -29,7 +29,7 @@ yum install jenkins -y
 #Start Jenkins:
 
 Start jenkins service
-service jenkins start
+service jenkins start        ###  ou  systemctl start jenkins ( ma search perso )
 
 Setup Jenkins to start at boot,
 chkconfig jenkins on
